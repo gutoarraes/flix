@@ -13,8 +13,6 @@ class MoviesController < ApplicationController
 
   def update
     @movie = Movie.find(params[:id])
-
-
     @movie.update(permitted_params)
     redirect_to @movie
   end
@@ -30,7 +28,7 @@ class MoviesController < ApplicationController
 
   def destroy
     @movie = Movie.find(params[:id])
-    @movie.delete
+    @movie.destroy
     redirect_to movies_url, status: :see_other
   end
 
