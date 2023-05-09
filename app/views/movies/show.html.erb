@@ -13,12 +13,12 @@
         <td><%= total_gross(@movie) %></td>
       </tr>
     </table>
-    <section class="admin">
-      <%= link_to "Edit", edit_movie_path(@movie), class: "button" %>
-      <%= link_to "Delete", movie_path(@movie),
-            data: { turbo_method: :delete , turbo_confirm: "Are you sure?" } %>
-    </section>
+
     </div>
+</section>
+<section class="admin">
+  <%= link_to "Edit", edit_movie_path(@movie), class: "button" %>
+  <%= button_to "Delete", movie_path(@movie), class: "button", method: :delete, data: { turbo: :false }%>
 </section>
 
 
