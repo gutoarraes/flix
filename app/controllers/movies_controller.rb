@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = released_at
   end
 
   def show
@@ -36,7 +36,10 @@ class MoviesController < ApplicationController
   private
 
   def permitted_params
-    params.require(:movie).permit(:title, :description, :rating, :released_on, :total_gross)
+    params.require(:movie).permit(:title, :description, :rating, :released_on, :total_gross, :director, :duration, :image_file_name)
   end
 
+  def released_at
+    Movie.where('released_on < ?',Time.now).order(released_on: :desc)
+  end
 end
