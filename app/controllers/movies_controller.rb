@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = released_at
+    @movies = Movie.all
   end
 
   def show
@@ -14,7 +14,12 @@ class MoviesController < ApplicationController
   def update
     @movie = Movie.find(params[:id])
     @movie.update(permitted_params)
-    redirect_to @movie
+    if @movie.save
+      redirect_to @movie, notice: "Movie updated successfully"
+    else
+      flash[:notice] = "Movie failed to update"
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def new
@@ -23,7 +28,12 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.create(permitted_params)
-    redirect_to @movie, notice: "Movie created successfully"
+    if @movie.save
+      redirect_to @movie
+    else
+      flash[:notice] = "Failed to create movie"
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -39,7 +49,4 @@ class MoviesController < ApplicationController
     params.require(:movie).permit(:title, :description, :rating, :released_on, :total_gross, :director, :duration, :image_file_name)
   end
 
-  def released_at
-    Movie.where('released_on < ?',Time.now).order(released_on: :desc)
-  end
 end

@@ -1,4 +1,5 @@
-<%= form_with model: movie do |form| %>
+<%= form_with(model: movie) do |form| %>
+<%= render 'shared/errors', object: @movie %>
 <p>
 <%= form.label :title%>
 <%= form.text_field :title, autofocus: true%>
@@ -20,8 +21,8 @@
 <%= form.text_field :director%>
 </p>
 <p>
-<%= form.label :duration%>
-<%= form.text_field :duration%>
+<%= form.label :rating%>
+<%= form.select :rating, Movie::RATINGS, prompt: "Pick one" %>
 </p>
 <p>
 <%= form.label :image_file_name%>
