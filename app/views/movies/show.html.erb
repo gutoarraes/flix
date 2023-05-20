@@ -29,5 +29,5 @@
   <%= button_to "Edit", edit_movie_path(@movie), class: "button", method: :get %>
   <%= button_to "Delete", movie_path(@movie), class: "button", method: :delete, data: { turbo: :false }%>
 </section>
-
+<%= link_to "Reviews", movie_reviews_path, class: "button" %>
 
