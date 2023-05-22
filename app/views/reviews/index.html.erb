@@ -1,9 +1,10 @@
-<%= @reviews.each do |review| %>
+<h1> Reviews for <%= @movie.title %> </h1>
 
-<p> <%= review.name %> </p>
-
-<p> <%= review.comment %> </p>
-
-<p> <%= review.stars %> </p>
-
-<% end %>
+<ul>
+  <% @reviews.each do |review| %>
+    <li>
+      <%= render 'shared/stars', percent: stars_as_percent(review) %> by <%= review.name %>:
+      <%= review.comment %>
+    </li>
+  <% end %>
+</ul>
