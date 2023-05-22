@@ -29,5 +29,6 @@
   <%= button_to "Edit", edit_movie_path(@movie), class: "button", method: :get %>
   <%= button_to "Delete", movie_path(@movie), class: "button", method: :delete, data: { turbo: :false }%>
   <%= button_to pluralize(@movie.reviews.count, "Review"), movie_reviews_path(@movie), class: "button", method: :get %>
+  <%= button_to "Write review", new_movie_review_path(@movie), class: "button", :method => :get %>
 </section>
 

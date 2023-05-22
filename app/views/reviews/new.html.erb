@@ -1,0 +1,12 @@
+<%= form_with(model: review) do |form| %>
+
+<%= r.label "title" %>
+<%= r.text_field "Title" %>
+
+<%= r.label "comment" %>
+<%= r.text_field "comment" %>
+
+<%= r.label "stars" %>
+<%= r.select :stars, Review::STARS, prompt:"pick one" %>
+
+<% end %>
